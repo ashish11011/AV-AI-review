@@ -1,6 +1,6 @@
 import { asc, desc, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { getDb, hasDatabaseUrl } from "@/db";
+import { db} from "@/db";
 import { companies, questions, reviews } from "@/db/schema";
 import { clampRating, slugify } from "@/lib/utils";
 import type {
@@ -60,7 +60,6 @@ function normalizeReviewRows(rows: Review[]) {
 }
 
 export async function listCompanies(): Promise<Company[]> {
-  const db = getDb();
 
   if (!db) {
     return demoCompanies.map(({ questions: _questions, reviews: _reviews, ...company }) => company);
@@ -72,8 +71,7 @@ export async function listCompanies(): Promise<Company[]> {
 }
 
 export async function listCompaniesWithDetails(): Promise<CompanyWithDetails[]> {
-  const db = getDb();
-
+ 
   if (!db) {
     return demoCompanies;
   }
@@ -92,8 +90,7 @@ export async function listCompaniesWithDetails(): Promise<CompanyWithDetails[]> 
 }
 
 export async function getCompanyBySlug(slug: string): Promise<CompanyWithQuestions | null> {
-  const db = getDb();
-
+ 
   if (!db) {
     const company = demoCompanies.find((item) => item.slug === slug && item.isActive);
     if (!company) {
@@ -119,8 +116,7 @@ export async function getCompanyBySlug(slug: string): Promise<CompanyWithQuestio
 }
 
 export async function getCompanyDetailsBySlug(slug: string): Promise<CompanyWithDetails | null> {
-  const db = getDb();
-
+ 
   if (!db) {
     return demoCompanies.find((item) => item.slug === slug) ?? null;
   }
@@ -154,8 +150,7 @@ export async function createCompany(input: {
     throw new Error("Company name and slug are required.");
   }
 
-  const db = getDb();
-
+ 
   if (!db) {
     demoCompanies = [
       {
@@ -190,8 +185,7 @@ export async function updateCompany(input: {
   googleReviewUrl?: string;
   isActive?: boolean;
 }) {
-  const db = getDb();
-  const updates = {
+   const updates = {
     name: input.name.trim(),
     slug: slugify(input.slug),
     description: input.description?.trim() || null,
@@ -215,8 +209,7 @@ export async function updateCompany(input: {
 }
 
 export async function deleteCompany(id: string) {
-  const db = getDb();
-
+ 
   if (!db) {
     demoCompanies = demoCompanies.filter((company) => company.id !== id);
     return;
@@ -227,8 +220,7 @@ export async function deleteCompany(id: string) {
 
 export async function replaceCompanyQuestions(companyId: string, prompts: string[]) {
   const cleanPrompts = normalizeQuestions(prompts);
-  const db = getDb();
-
+ 
   if (!db) {
     demoCompanies = demoCompanies.map((company) =>
       company.id === companyId
@@ -272,8 +264,7 @@ export async function saveReview(input: {
     input.questionAnswers.reduce((sum, answer) => sum + clampRating(answer.rating), 0) /
     Math.max(input.questionAnswers.length, 1);
   const normalizedRating = clampRating(rating);
-  const db = getDb();
-
+ 
   if (!input.generatedReview.trim() || input.questionAnswers.length === 0) {
     throw new Error("A generated review and at least one answer are required.");
   }
@@ -312,9 +303,9 @@ export async function saveReview(input: {
   });
 }
 
-export function databaseStatusLabel() {
-  return hasDatabaseUrl() ? "Connected to DATABASE_URL" : "Demo mode: add DATABASE_URL to persist data";
-}
+// export function databaseStatusLabel() {
+//   return hasDatabaseUrl() ? "Connected to DATABASE_URL" : "Demo mode: add DATABASE_URL to persist data";
+// }
 
 export function revalidateCompanyPaths(slug?: string) {
   revalidatePath("/");

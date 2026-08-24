@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CompanyAdmin } from "@/components/company-admin";
 import { ReviewsTable } from "@/components/reviews-table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { databaseStatusLabel, getCompanyDetailsBySlug } from "@/lib/data";
+import { getCompanyDetailsBySlug } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +15,9 @@ type CompanyAdminPageProps = {
   }>;
 };
 
-export default async function CompanyAdminPage({ params }: CompanyAdminPageProps) {
+export default async function CompanyAdminPage({
+  params,
+}: CompanyAdminPageProps) {
   const { companySlug } = await params;
   const company = await getCompanyDetailsBySlug(companySlug);
 
@@ -33,9 +35,13 @@ export default async function CompanyAdminPage({ params }: CompanyAdminPageProps
       </Button>
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="mb-2 text-sm font-medium uppercase tracking-wider text-primary">Company admin</p>
-          <h1 className="text-4xl font-semibold tracking-normal">{company.name}</h1>
-          <p className="mt-3 text-sm text-muted-foreground">{databaseStatusLabel()}</p>
+          <p className="mb-2 text-sm font-medium uppercase tracking-wider text-primary">
+            Company admin
+          </p>
+          <h1 className="text-4xl font-semibold tracking-normal">
+            {company.name}
+          </h1>
+          {/* <p className="mt-3 text-sm text-muted-foreground">{databaseStatusLabel()}</p> */}
         </div>
         <Button asChild variant="outline">
           <Link href={`/${company.slug}`}>Open public page</Link>
