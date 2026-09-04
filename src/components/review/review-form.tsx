@@ -121,7 +121,7 @@ export function ReviewForm({ company }: ReviewFormProps) {
   }
 
   return (
-    <div className="grid gap-7 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-start">
+    <div className="grid gap-7 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] xl:items-start">
       <section className="overflow-hidden border border-[#171714]/10 bg-[#fbf9f5] shadow-[0_20px_60px_rgba(45,35,22,0.06)]">
         <div className="border-b border-[#171714]/10 p-6 sm:p-7">
           <div className="flex items-start justify-between gap-5">

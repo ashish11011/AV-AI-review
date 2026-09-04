@@ -13,7 +13,7 @@ export function ReviewTransformation() {
       <div className="absolute -right-32 -top-56 h-[620px] w-[620px] rounded-full border border-[#e8c5b2]/15" />
       <div className="absolute -right-16 -top-40 h-[480px] w-[480px] rounded-full border border-white/10" />
 
-      <div className="page-shell relative mx-auto grid max-w-[1240px] gap-14 lg:grid-cols-[0.84fr_1.16fr] lg:items-center">
+      <div className="page-shell relative mx-auto grid max-w-[1240px] gap-14 xl:grid-cols-[0.84fr_1.16fr] xl:items-center">
         <Reveal>
           <p className="text-[11px] font-semibold uppercase tracking-[0.17em] text-[#e8c5b2]">
             The better way to ask
@@ -27,7 +27,7 @@ export function ReviewTransformation() {
           </p>
         </Reveal>
 
-        <div className="relative grid gap-4 sm:grid-cols-[0.88fr_1.12fr]">
+        <div className="relative grid gap-4 md:grid-cols-[0.88fr_1.12fr]">
           <Reveal delay={120}>
             <div className="border border-white/12 bg-[#1d332e] p-5">
               <p className="mb-5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/45">

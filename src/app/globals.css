@@ -167,8 +167,14 @@ select,
 [contenteditable="true"] {
   caret-color: auto !important;
   cursor: text !important;
+  font-size: 16px !important;
   -webkit-user-select: text !important;
   user-select: text !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 input[type="checkbox"],

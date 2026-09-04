@@ -24,7 +24,7 @@ export function CreateCompanyFlow() {
   const [isCreating, startCreating] = useTransition();
 
   const suggestedSlug = useMemo(() => slugify(name), [name]);
-  const resolvedSlug = slug || suggestedSlug;
+  const resolvedSlug = slugify(slug || name);
   const companyCreated = Boolean(createdCompany);
   const basicsComplete = Boolean(
     name.trim() && description.trim() && googleReviewUrl.trim(),

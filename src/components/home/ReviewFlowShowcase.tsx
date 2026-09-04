@@ -31,7 +31,7 @@ export function ReviewFlowShowcase() {
               <span className="display-type text-2xl">ReviewPilot</span>
               <span className="text-sm font-semibold text-[var(--home-contrast)]">Guided review page</span>
             </div>
-            <div className="grid gap-5 lg:grid-cols-[0.92fr_1.12fr_0.72fr]">
+            <div className="grid gap-5 xl:grid-cols-[0.92fr_1.12fr_0.72fr]">
               <div className="rounded-[24px] border border-[var(--home-border)] bg-[#fbfaf6] p-5">
                 <h3 className="display-type text-3xl">Your experience matters</h3>
                 <p className="mt-2 text-sm leading-6 text-[var(--home-muted)]">Rate the moments that made the experience memorable.</p>

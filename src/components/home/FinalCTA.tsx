@@ -11,7 +11,7 @@ export function FinalCTA({ demoHref }: FinalCTAProps) {
   return (
     <section className="bg-[var(--home-bg)] px-4 pb-10 sm:px-5">
       <Reveal>
-        <div className="relative mx-auto grid max-w-[1360px] overflow-hidden rounded-[30px] bg-[var(--home-dark)] p-8 text-[var(--home-surface)] shadow-[0_24px_80px_rgba(45,35,22,0.12)] lg:grid-cols-[1fr_360px] lg:p-14">
+        <div className="relative mx-auto grid max-w-[1360px] overflow-hidden rounded-[24px] bg-[var(--home-dark)] p-7 text-[var(--home-surface)] shadow-[0_24px_80px_rgba(45,35,22,0.12)] sm:rounded-[30px] sm:p-8 xl:grid-cols-[1fr_360px] xl:p-14">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--home-accent-soft)]">ReviewPilot</p>
             <h2 className="display-type mt-6 max-w-4xl text-[clamp(48px,5.8vw,92px)] font-normal leading-[0.96] tracking-[-0.04em]">
@@ -30,7 +30,7 @@ export function FinalCTA({ demoHref }: FinalCTAProps) {
               </Button>
             </div>
           </div>
-          <article className="mt-10 rounded-[24px] border border-white/10 bg-[var(--home-contrast)]/30 p-5 lg:mt-0 lg:self-end">
+          <article className="mt-10 rounded-[24px] border border-white/10 bg-[var(--home-contrast)]/30 p-5 xl:mt-0 xl:self-end">
             <div className="mb-4 flex gap-1 text-[var(--home-accent-soft)]">
               {[1, 2, 3, 4, 5].map((star) => (
                 <Star key={star} className="h-4 w-4 fill-current" />
