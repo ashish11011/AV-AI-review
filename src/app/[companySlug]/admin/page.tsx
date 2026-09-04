@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CompanyAdmin } from "@/components/company-admin";
-import { ReviewsTable } from "@/components/reviews-table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CompanyAdmin } from "@/components/admin/company-admin";
+import { ReviewsTable } from "@/components/admin/reviews-table";
 import { getCompanyDetailsBySlug } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
@@ -26,39 +25,39 @@ export default async function CompanyAdminPage({
   }
 
   return (
-    <main className="page-shell py-10">
-      <Button asChild variant="ghost" className="mb-6 px-0">
-        <Link href="/admin">
-          <ArrowLeft className="h-4 w-4" />
-          Project admin
-        </Link>
-      </Button>
-      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="mb-2 text-sm font-medium uppercase tracking-wider text-primary">
-            Company admin
-          </p>
-          <h1 className="text-4xl font-semibold tracking-normal">
-            {company.name}
-          </h1>
-          {/* <p className="mt-3 text-sm text-muted-foreground">{databaseStatusLabel()}</p> */}
+    <main className="min-h-screen bg-[#f4f1ea] px-4 pb-12 pt-28 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1240px]">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-5 border-b border-[#171714]/12 pb-8">
+          <div>
+            <Button asChild variant="ghost" className="-ml-3 mb-5 rounded-full text-[#73695e]">
+              <Link href="/admin">
+                <ArrowLeft className="h-4 w-4" />
+                Companies
+              </Link>
+            </Button>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.17em] text-[var(--home-contrast)]">
+              Company admin
+            </p>
+            <h1 className="display-type mt-3 text-[clamp(46px,5vw,72px)] font-normal leading-[0.92] tracking-[-0.045em]">
+              {company.name}
+            </h1>
+            <p className="mt-4 max-w-xl text-[16px] leading-7 text-[#73695e]">
+              Update the public review page, rating questions, and saved review drafts.
+            </p>
+          </div>
+          <Button asChild variant="outline" className="border-[#171714]/12 bg-transparent">
+            <Link href={`/${company.slug}`}>
+              <ExternalLink className="h-4 w-4" />
+              Page
+            </Link>
+          </Button>
         </div>
-        <Button asChild variant="outline">
-          <Link href={`/${company.slug}`}>Open public page</Link>
-        </Button>
-      </div>
-      <Tabs defaultValue="questions">
-        <TabsList>
-          <TabsTrigger value="questions">Questions</TabsTrigger>
-          <TabsTrigger value="reviews">Reviews</TabsTrigger>
-        </TabsList>
-        <TabsContent value="questions">
-          <CompanyAdmin company={company} />
-        </TabsContent>
-        <TabsContent value="reviews">
+
+        <CompanyAdmin company={company} />
+        <div className="mt-8 border-t border-[#171714]/12 pt-8">
           <ReviewsTable reviews={company.reviews} />
-        </TabsContent>
-      </Tabs>
+        </div>
+      </div>
     </main>
   );
 }
